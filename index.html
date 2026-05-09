@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammed Oussama — AI Engineer &amp; Digital Designer</title>
+
+  <!-- Inter from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /*
+      ════════════════════════════════════════════════════════
+      GREATER THEORY — custom display font
+      Download the font and place the file at:
+        portfolio/fonts/GreaterTheory.woff2
+        or
+        portfolio/fonts/GreaterTheory.otf
+      (works with either format — the rule below loads both)
+      ════════════════════════════════════════════════════════
+    */
+    @font-face {
+      font-family: 'Greater Theory';
+      src: url('fonts/greater_theory/GreaterTheory.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #171717;
+      --white: #F8F8F8;
+      --border: #ddd;
+      --text: #1c1c1c;
+      --muted: #666;
+      --divider: 2px;
+      --divider-inset: 52px;
+      --vdivider-inset: 28px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Scroll-reveal: slides in from the left + fades in */
+    .reveal {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ─────────────────────────────────────────
+       HERO / LANDING
+    ───────────────────────────────────────── */
+    #hero {
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* NAV */
+    .nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 52px 28px 36px;
+      z-index: 20;
+    }
+
+    .nav-logo {
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      margin-top: -10px;
+      margin-left: -16px;
+    }
+
+    /*
+      ════════════════════════════════
+      LOGO IMAGE  →  portfolio/logo.png
+      ════════════════════════════════
+    */
+    .nav-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 48px;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links a.underline {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
+
+    /* HERO BIG TEXT */
+    .hero-inner {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .hero-text {
+      position: absolute;
+      left: 52px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+    }
+
+    .hero-name,
+    .hero-port,
+    .hero-foli,
+    .hero-o {
+      display: block;
+      font-family: 'Greater Theory', 'Inter', sans-serif;
+      font-size: clamp(70px, 12vw, 180px);
+      line-height: 0.88;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* OUSSAMA sits slightly looser above the PORT/FOLI/O stack */
+    .hero-name {
+      margin-bottom: 0.04em;
+    }
+
+    /*
+      ════════════════════════════════════════════════════
+      HERO COMPOSITE IMAGE  →  portfolio/hero-composite.png
+      This is the single PNG that contains your photo cutout
+      + all the floating mockup screenshots combined.
+      Drop it in the portfolio/ folder and it will fill the
+      right side of the hero automatically.
+      ════════════════════════════════════════════════════
+    */
+    .hero-composite {
+      position: absolute;
+      right: calc(8% + 8cm);
+      bottom: 0;
+      height: 100%;
+      width: auto;
+      max-width: 65%;
+      object-fit: contain;
+      object-position: right bottom;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    /* AI ENGINEER LABEL — bottom right */
+    .hero-tag {
+      position: absolute;
+      bottom: 44px;
+      right: 120px;
+      text-align: right;
+      z-index: 10;
+    }
+
+    .hero-tag p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      line-height: 1.7;
+    }
+
+    /* ─────────────────────────────────────────
+       ABOUT ME
+    ───────────────────────────────────────── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      position: relative;
+    }
+
+    #about::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: var(--divider-inset);
+      right: var(--divider-inset);
+      height: var(--divider);
+      background: var(--text);
+    }
+
+    .about-left {
+      padding: 56px 52px;
+      position: relative;
+    }
+
+    .about-left::after {
+      content: '';
+      position: absolute;
+      top: var(--vdivider-inset);
+      bottom: var(--vdivider-inset);
+      right: 0;
+      width: var(--divider);
+      background: var(--text);
+    }
+
+    .about-right {
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sec-label {
+      font-family: 'Greater Theory', 'Inter', sans-serif;
+      font-weight: normal;
+      font-size: 22px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .about-bio {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.75;
+      color: #1c1c1c;
+    }
+
+    .about-socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    /*
+      ════════════════════════════════════════════════
+      SOCIAL MEDIA BUTTONS (About section)
+      Replace the href values in the HTML below:
+        https://github.com/Mohammedoussama    → your GitHub profile URL
+        https://www.linkedin.com/in/mohammed-oussama-boudjadja-08a474336/  → your LinkedIn profile URL
+        https://www.instagram.com/_dhfxjk/?hl=fr → your Instagram profile URL
+      ════════════════════════════════════════════════
+    */
+    .soc-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--black);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: opacity .2s;
+      flex-shrink: 0;
+    }
+
+    .soc-btn:hover {
+      opacity: .7;
+    }
+
+    .soc-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    /* ─────────────────────────────────────────
+       EXPERIENCE
+    ───────────────────────────────────────── */
+    #experience {
+      display: grid;
+      grid-template-columns: 320px 1fr 1fr;
+      position: relative;
+    }
+
+    #experience::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: var(--divider-inset);
+      right: var(--divider-inset);
+      height: var(--divider);
+      background: var(--text);
+    }
+
+    .exp-aside {
+      padding: 56px 24px 56px 60px;
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .exp-aside::after {
+      content: '';
+      position: absolute;
+      top: var(--vdivider-inset);
+      bottom: var(--vdivider-inset);
+      right: 0;
+      width: var(--divider);
+      background: var(--text);
+    }
+
+    /* EXPERIENCE label — single line, same size as ABOUT ME */
+    .exp-aside .sec-label {
+      font-size: 22px;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .exp-col {
+      padding: 56px 32px;
+      position: relative;
+    }
+
+    .exp-col:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: var(--vdivider-inset);
+      bottom: var(--vdivider-inset);
+      right: 0;
+      width: var(--divider);
+      background: var(--text);
+    }
+
+    .exp-role {
+      font-family: 'Greater Theory', 'Inter', sans-serif;
+      font-weight: normal;
+      font-size: 22px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .exp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .exp-list li {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: #333;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .exp-list li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       CORE PROJECTS
+    ───────────────────────────────────────── */
+    #projects {
+      padding: 40px 52px 70px;
+      position: relative;
+    }
+
+    #projects::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: var(--divider-inset);
+      right: var(--divider-inset);
+      height: var(--divider);
+      background: var(--text);
+    }
+
+    /* Vertical divider between image and text — shorter, x-position adjustable per row */
+    .proj-row,
+    .upscaler-row {
+      position: relative;
+    }
+
+    .proj-row::before,
+    .upscaler-row::before {
+      content: '';
+      position: absolute;
+      top: 90px;
+      height: 280px;
+      left: var(--divider-x, 50%);
+      width: var(--divider);
+      background: var(--text);
+      transform: translateX(-50%);
+    }
+
+    /*
+      Per-row offset for the vertical divider — tweak these to taste:
+        47% = shifted slightly left toward the image
+        50% = dead center of the gap
+        53% = shifted slightly right toward the text
+    */
+    .proj-row:nth-of-type(1)  { --divider-x: 47%; }   /* AIRA   (image left)  */
+    .upscaler-row              { --divider-x: 60%; }   /* UPSCALER (text left) */
+    .proj-row:nth-of-type(2)  { --divider-x: 40%; }   /* HIREVO (image left)  */
+
+    .projects-title {
+      font-family: 'Greater Theory', 'Inter', sans-serif;
+      font-weight: normal;
+      font-size: 22px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .proj-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      padding-bottom: 32px;
+      margin-bottom: 32px;
+    }
+
+    .proj-row:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .proj-img {
+      background: transparent;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /*
+      ════════════════════════════════════════
+      PROJECT IMAGES — place in portfolio/:
+        aira-mockup.png
+        upscaler-sample.png
+        hirevo-mockup.png
+      ════════════════════════════════════════
+    */
+    .proj-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .proj-heading {
+      font-family: 'Greater Theory', 'Inter', sans-serif;
+      font-weight: normal;
+      font-size: 22px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--text);
+      padding-bottom: 10px;
+      margin-bottom: 22px;
+      display: inline-block;
+      color: var(--text);
+    }
+
+    .proj-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .proj-list li {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.65;
+      color: #333;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .proj-list li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+    }
+
+    /* Upscaler row: text left, samples grid right */
+    .upscaler-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      padding-bottom: 32px;
+      margin-bottom: 32px;
+    }
+
+    /* Push only the upscaler TEXT column to the right (image stays put) */
+    .upscaler-row > div:first-child {
+      padding-left: 3cm;
+    }
+
+    /* AIRA text — pull it left a bit (image stays put) */
+    .proj-row:first-of-type > div:last-child {
+      transform: translateX(-2cm);
+    }
+
+    .samples-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      padding-left: 4.5cm;
+      text-align: left;
+    }
+
+    .samples-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .sample-box {
+      aspect-ratio: 1;
+      background: #ddd;
+      overflow: hidden;
+    }
+
+    .sample-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       DESIGNS
+    ───────────────────────────────────────── */
+    #designs {
+      padding: 40px 0 0;
+      position: relative;
+    }
+
+    #designs::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: var(--divider-inset);
+      right: var(--divider-inset);
+      height: var(--divider);
+      background: var(--text);
+    }
+
+    .designs-title {
+      font-family: 'Greater Theory', 'Inter', sans-serif;
+      font-weight: normal;
+      font-size: 22px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text);
+      padding: 0 52px;
+      margin-bottom: 56px;
+    }
+
+    .design-sub {
+      background: var(--black);
+      padding: 32px 32px 60px;
+      margin-bottom: 24px;
+    }
+
+    .design-sub:last-child {
+      margin-bottom: 0;
+    }
+
+    .design-sub-label {
+      font-family: 'Greater Theory', 'Inter', sans-serif;
+      font-weight: normal;
+      font-size: 22px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .design-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .design-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .design-card {
+      background: #111;
+      overflow: hidden;
+    }
+
+    .design-card.wide {
+      aspect-ratio: 16/10;
+    }
+
+    /* Wide UI/UX cards keep the full image visible (letterbox) — black bars blend with the section */
+    .design-card.wide img {
+      object-fit: contain;
+      background: var(--black);
+    }
+
+    .design-card.square {
+      aspect-ratio: 1;
+    }
+
+    /*
+      ════════════════════════════════════════
+      DESIGN GALLERY IMAGES — place in portfolio/:
+        uiux-1.png  uiux-2.png  uiux-3.png
+        social-1.png  social-2.png  social-3.png  social-4.png
+      ════════════════════════════════════════
+    */
+    .design-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       QUOTE / CTA — black text on white background
+    ───────────────────────────────────────── */
+    #cta {
+      background: var(--white);
+      color: var(--text);
+      padding: 110px 52px;
+      text-align: center;
+    }
+
+    .cta-quote {
+      font-family: 'Greater Theory', 'Inter', sans-serif;
+      font-weight: normal;
+      font-size: clamp(24px, 3.6vw, 50px);
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text);
+      max-width: 1200px;
+      margin: 0 auto 28px;
+    }
+
+    .cta-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text);
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      border-top: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .footer-top {
+      padding: 64px 52px 40px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .footer-logo-big {
+      width: 130px;
+      height: 130px;
+    }
+
+    .footer-logo-big img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .footer-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .ft-col-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+      margin-bottom: 18px;
+    }
+
+    .ft-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .ft-links a {
+      color: rgba(255, 255, 255, .75);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .ft-links a:hover {
+      color: #fff;
+    }
+
+    .ft-email {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .ft-email a {
+      color: rgba(255, 255, 255, .75);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .ft-email a:hover {
+      color: #fff;
+    }
+
+    .footer-meta {
+      padding: 0 52px 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .meta-group {
+      display: flex;
+      gap: 40px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .meta-key {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .28);
+    }
+
+    .meta-val {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, .55);
+    }
+
+    .ft-collab {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .28);
+      text-align: right;
+    }
+
+    /* Bottom row — copyright (left) + MOHAMMED (right, partially cut off) */
+    .footer-end {
+      padding: 0 52px;
+      display: flex;
+      align-items: flex-end;
+      gap: 32px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .footer-copy {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, .55);
+      flex-shrink: 0;
+      padding-bottom: 18px;
+      white-space: nowrap;
+    }
+
+    .footer-big {
+      flex: 1;
+      overflow: hidden;
+      height: clamp(50px, 11vw, 150px); /* shorter than text → cuts off bottom of letters */
+    }
+
+    .footer-big-text {
+      font-family: 'Greater Theory', 'Inter', sans-serif;
+      font-size: clamp(80px, 17vw, 230px);
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: -2px;
+      white-space: nowrap;
+      user-select: none;
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════
+     HERO / LANDING PAGE
+═══════════════════════════════════════════ -->
+  <section id="hero">
+
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-logo">
+        <!--
+        ════════════════════════════════
+        LOGO  →  portfolio/logo.png
+        ════════════════════════════════
+      -->
+        <img src="logo.png" alt="Logo" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about" class="underline">Get in Touch</a></li>
+        <li><a href="#projects">More</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero-inner">
+
+      <!-- BIG TYPE (Greater Theory font) -->
+      <div class="hero-text">
+        <span class="hero-name">OUSSAMA</span>
+        <span class="hero-port">PORT</span>
+        <span class="hero-foli">FOLI</span>
+        <span class="hero-o">O</span>
+      </div>
+
+      <!--
+      ════════════════════════════════════════════════════
+      HERO COMPOSITE IMAGE  →  portfolio/hero-composite.png
+
+      This is the single PNG that has everything in it:
+        • your photo cutout
+        • all the floating design mockup screenshots
+
+      Just drop  hero-composite.png  in the portfolio/ folder.
+      The image will be anchored to the right side of the hero.
+      ════════════════════════════════════════════════════
+    -->
+      <img class="hero-composite" src="hero-composite.png" alt="Oussama — portfolio hero" />
+
+      <!-- BOTTOM-RIGHT LABEL -->
+      <div class="hero-tag">
+        <p>AI Engineer</p>
+        <p>Digital</p>
+        <p>Designer</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+     ABOUT ME
+═══════════════════════════════════════════ -->
+  <section id="about" class="reveal">
+    <div class="about-left">
+      <p class="about-bio">
+        "My name is Mohammed Oussama Boudjadja, I am an AI Engineer specializing in Deep Learning and Computer
+        Vision, currently pursuing my B.S. at the Numidia Institute of Technology. My work is defined by a dual
+        passion for technical rigor—such as engineering custom inference pipelines—and aesthetic precision, rooted
+        in over nine years of traditional and digital illustration. Whether I'm leading design departments or winning
+        hackathons, my goal is to create high-performance systems that feel intuitive and look seamless."
+      </p>
+    </div>
+
+    <div class="about-right">
+      <div class="sec-label">About Me</div>
+      <div class="about-socials">
+        <!--
+          SOCIAL MEDIA LINKS — replace the 3 href values:
+            https://www.instagram.com/_dhfxjk/?hl=fr → your Instagram URL
+            https://github.com/Mohammedoussama    → your GitHub URL
+            https://www.linkedin.com/in/mohammed-oussama-boudjadja-08a474336/  → your LinkedIn URL
+        -->
+        <a href="https://www.instagram.com/_dhfxjk/?hl=fr" class="soc-btn" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="mailto:oussamaiceff@gmail.com" class="soc-btn" aria-label="Email">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/mohammed-oussama-boudjadja-08a474336/" class="soc-btn" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+     EXPERIENCE
+═══════════════════════════════════════════ -->
+  <section id="experience" class="reveal">
+    <div class="exp-aside">
+      <div class="sec-label">Experience</div>
+    </div>
+
+    <div class="exp-col">
+      <div class="exp-role">Nexus Club | Head of Design &amp; UI/UX Department</div>
+      <ul class="exp-list">
+        <li>Led the design department in creating cohesive visual identities for major events and digital platforms.
+        </li>
+        <li>Mentored junior designers and established UI/UX standards for internal projects and external collaborations.
+        </li>
+      </ul>
+    </div>
+
+    <div class="exp-col">
+      <div class="exp-role">IT Engineering/UX Design Intern | Société Générale Algérie</div>
+      <ul class="exp-list">
+        <li>Interface Make/Optimization: Tasked with redesigning internal dashboard components to align with modern
+          usability standards and enhance the bank work flow.</li>
+        <li>Project Deliverable: Successfully developed and presented the tasks given to improve department workflow.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+     CORE PROJECTS & ENTREPRENEURSHIP
+═══════════════════════════════════════════ -->
+  <section id="projects" class="reveal">
+    <div class="projects-title">Core Projects &amp; Entrepreneurship</div>
+
+    <!-- AIRA -->
+    <div class="proj-row">
+      <div class="proj-img">
+        <!--  portfolio/aira-mockup.png  -->
+        <img src="aira-mockup.png" alt="AIRA Project" />
+      </div>
+      <div>
+        <div class="proj-heading">AIRA | Co-Founder &amp; Lead AI Developer</div>
+        <ul class="proj-list">
+          <li>Strategized the launch of an end-to-end Speech-to-Text platform for the Algerian market using the
+            <strong>Wav2Vec2</strong> architecture.
+          </li>
+          <li>Engineered a custom inference pipeline for automated order confirmation, processing the linguistic nuances
+            of Algerian Darija.</li>
+          <li>Processed localized datasets to achieve high-accuracy transcription suitable for commercial industrial
+            deployment.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- AI IMAGE UPSCALER -->
+    <div class="upscaler-row">
+      <div>
+        <div class="proj-heading">AI Image Upscaler | Computer Vision Engineer</div>
+        <ul class="proj-list">
+          <li>Developed a custom deep learning model designed to upscale low-resolution images into high-definition
+            assets.</li>
+          <li>Implemented a specialized grid-prediction algorithm that splits pixels into <strong>8×8 sub-grids</strong>
+            to guess and generate missing data.</li>
+          <li>Focused on high-fidelity edge reconstruction to ensure results remain photorealistic and sharp without the
+            "cartoonish" artifacts common in standard upsaclers.</li>
+          <li>Optimized the model for real-time zooming applications where clarity and fine texture preservation are
+            critical.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="samples-label">Samples:</div>
+        <!--  portfolio/upscaler-sample.png  -->
+        <div class="proj-img">
+          <img src="upscaler-sample.png" alt="AI Image Upscaler Sample" />
+        </div>
+      </div>
+    </div>
+
+    <!-- HIREVO -->
+    <div class="proj-row">
+      <div class="proj-img">
+        <!--  portfolio/hirevo-mockup.png  -->
+        <img src="hirevo-mockup.png" alt="HIREVO Project" />
+      </div>
+      <div>
+        <div class="proj-heading">HIREVO | Lead AI Architect</div>
+        <ul class="proj-list">
+          <li>Developed a professional recruitment platform utilizing an AI-driven matching engine to optimize candidate
+            selection.</li>
+          <li>Architected high-performance vector similarity search pipelines and automated CV data extraction agents.
+          </li>
+          <li>Designed the complete visual identity and strategic documentation for the project ecosystem.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+     SOME OF MY DESIGNS
+═══════════════════════════════════════════ -->
+  <section id="designs" class="reveal">
+    <div class="designs-title">Some of My Designs</div>
+
+    <!-- UI/UX Web Design -->
+    <div class="design-sub">
+      <div class="design-sub-label">UI/UX Web Design</div>
+      <div class="design-grid-3">
+        <!--
+        portfolio/uiux-1.png
+        portfolio/uiux-2.png
+        portfolio/uiux-3.png
+      -->
+        <div class="design-card wide"><img src="uiux-1.png" alt="UI/UX Design 1" /></div>
+        <div class="design-card wide"><img src="uiux-2.png" alt="UI/UX Design 2" /></div>
+        <div class="design-card wide"><img src="uiux-3.png" alt="UI/UX Design 3" /></div>
+      </div>
+    </div>
+
+    <!-- Social Media Posts -->
+    <div class="design-sub">
+      <div class="design-sub-label">Social media posts</div>
+      <div class="design-grid-4">
+        <!--
+        portfolio/social-1.png
+        portfolio/social-2.png
+        portfolio/social-3.png
+        portfolio/social-4.png
+      -->
+        <div class="design-card square"><img src="social-1.png" alt="Social Post 1" /></div>
+        <div class="design-card square"><img src="social-2.png" alt="Social Post 2" /></div>
+        <div class="design-card square"><img src="social-3.png" alt="Social Post 3" /></div>
+        <div class="design-card square"><img src="social-4.png" alt="Social Post 4" /></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+     CTA / QUOTE
+═══════════════════════════════════════════ -->
+  <section id="cta" class="reveal">
+    <blockquote class="cta-quote">
+      "Combining a decade of art with a future in AI. Let's work together to turn bold ideas into functional reality."
+    </blockquote>
+    <p class="cta-sub">Start your projects with a trusted partner today.</p>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+  <footer>
+    <!-- TOP: large logo on the LEFT + 3 columns on the RIGHT -->
+    <div class="footer-top">
+      <div class="footer-logo-big">
+        <!--  portfolio/logo.png  -->
+        <img src="logo.png" alt="Logo" />
+      </div>
+
+      <div class="footer-cols">
+        <div>
+          <div class="ft-col-title">Sitemap</div>
+          <ul class="ft-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#cta">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="ft-col-title">Follow Me</div>
+          <!--
+            FOOTER SOCIAL LINKS — same URLs as above:
+              https://github.com/Mohammedoussama  /  https://www.linkedin.com/in/mohammed-oussama-boudjadja-08a474336/  /  https://www.instagram.com/_dhfxjk/?hl=fr
+          -->
+          <ul class="ft-links">
+            <li><a href="https://github.com/Mohammedoussama" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/mohammed-oussama-boudjadja-08a474336/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/_dhfxjk/?hl=fr" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="ft-col-title">Work with Me</div>
+          <div class="ft-email">
+            <a href="mailto:oussamaiceff@gmail.com">oussamaiceff@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- META row -->
+    <div class="footer-meta">
+      <div class="meta-group">
+        <div class="meta-item">
+          <span class="meta-key">Location</span>
+          <span class="meta-val">Based in Algeria</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Availability</span>
+          <span class="meta-val">Currently available for projects</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Local Time</span>
+          <span class="meta-val" id="local-time">—</span>
+        </div>
+      </div>
+      <div></div>
+      <div class="ft-collab">Looking Forward to Our Collab!</div>
+    </div>
+
+    <!-- END row: copyright on left + big MOHAMMED on right (partially cut off) -->
+    <div class="footer-end">
+      <p class="footer-copy">© 2026 · Oussama · All Rights Reserved</p>
+      <div class="footer-big">
+        <div class="footer-big-text">MOHAMMED</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Live local time — Algeria UTC+1 */
+    function tick() {
+      const s = new Date().toLocaleTimeString('en-US', {
+        timeZone: 'Africa/Algiers',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+      document.getElementById('local-time').textContent = s + ' GMT+1';
+    }
+    tick();
+    setInterval(tick, 60000);
+
+    /* Scroll-reveal — sections slide in from the left + fade in */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+
+</body>
+
+</html>
