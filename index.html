@@ -6,6 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mohammed Oussama — AI Engineer &amp; Digital Designer</title>
 
+  <!-- Favicon (browser tab icon) — uses smallicon.png; other logos on the page still use logo.png -->
+  <link rel="icon" type="image/png" sizes="16x16"  href="smallicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32"  href="smallicon.png" />
+  <link rel="icon" type="image/png" sizes="96x96"  href="smallicon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="smallicon.png" />
+  <link rel="apple-touch-icon"      sizes="180x180" href="smallicon.png" />
+  <link rel="shortcut icon" type="image/png" href="smallicon.png" />
+
   <!-- Inter from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -62,6 +70,51 @@
       overflow-x: hidden;
     }
 
+    /* ─────────────────────────────────────────
+       INTRO SCREEN — shows once on page load
+    ───────────────────────────────────────── */
+    body.intro-active {
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      padding-left: 52px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), 0 12px 24px rgba(0, 0, 0, 0.35);
+      animation: introExit 1s cubic-bezier(0.76, 0, 0.24, 1) 1.7s forwards;
+    }
+
+    .intro-text {
+      font-family: 'Greater Theory', 'Inter', sans-serif;
+      font-size: clamp(80px, 14vw, 200px);
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      white-space: nowrap;
+      transform: translateX(-110vw);
+      animation: introTextIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    }
+
+    @keyframes introTextIn {
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes introExit {
+      to {
+        transform: translateY(-100%);
+      }
+    }
+
     /* Scroll-reveal: slides in from the left + fades in */
     .reveal {
       opacity: 0;
@@ -109,7 +162,7 @@
       height: 150px;
       display: flex;
       align-items: center;
-      margin-top: -10px;
+      margin-top: -28px;
       margin-left: -16px;
     }
 
@@ -175,6 +228,11 @@
     /* OUSSAMA sits slightly looser above the PORT/FOLI/O stack */
     .hero-name {
       margin-bottom: 0.04em;
+    }
+
+    /* Push PORT/FOLI/O down a bit (OUSSAMA stays in place) */
+    .hero-port {
+      margin-top: 0.35em;
     }
 
     /*
@@ -269,9 +327,9 @@
 
     .about-bio {
       font-family: 'Inter', sans-serif;
-      font-size: 17px;
+      font-size: 24px;
       font-weight: 500;
-      line-height: 1.75;
+      line-height: 1.55;
       color: #1c1c1c;
     }
 
@@ -391,9 +449,9 @@
 
     .exp-list li {
       font-family: 'Inter', sans-serif;
-      font-size: 17px;
+      font-size: 24px;
       font-weight: 500;
-      line-height: 1.6;
+      line-height: 1.55;
       color: #333;
       padding-left: 14px;
       position: relative;
@@ -423,33 +481,7 @@
       background: var(--text);
     }
 
-    /* Vertical divider between image and text — shorter, x-position adjustable per row */
-    .proj-row,
-    .upscaler-row {
-      position: relative;
-    }
-
-    .proj-row::before,
-    .upscaler-row::before {
-      content: '';
-      position: absolute;
-      top: 90px;
-      height: 280px;
-      left: var(--divider-x, 50%);
-      width: var(--divider);
-      background: var(--text);
-      transform: translateX(-50%);
-    }
-
-    /*
-      Per-row offset for the vertical divider — tweak these to taste:
-        47% = shifted slightly left toward the image
-        50% = dead center of the gap
-        53% = shifted slightly right toward the text
-    */
-    .proj-row:nth-of-type(1)  { --divider-x: 47%; }   /* AIRA   (image left)  */
-    .upscaler-row              { --divider-x: 60%; }   /* UPSCALER (text left) */
-    .proj-row:nth-of-type(2)  { --divider-x: 40%; }   /* HIREVO (image left)  */
+    /* (Vertical divider rules now attached to .proj-img above) */
 
     .projects-title {
       font-family: 'Greater Theory', 'Inter', sans-serif;
@@ -479,8 +511,34 @@
     .proj-img {
       background: transparent;
       aspect-ratio: 16/10;
-      overflow: hidden;
       position: relative;
+    }
+
+    /* Short vertical divider in the gap between image and text — vertically centered on the image */
+    .proj-row .proj-img::after,
+    .upscaler-row .proj-img::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 280px;
+      width: var(--divider);
+      background: var(--text);
+    }
+
+    /* AIRA — line in the gap, slightly right of image */
+    .proj-row.aira .proj-img::after {
+      right: -16px;
+    }
+
+    /* HIREVO — line just slightly left of dead center */
+    .proj-row.hirevo .proj-img::after {
+      right: -24px;
+    }
+
+    /* Upscaler (image right) — push line further into the image (rightward) */
+    .upscaler-row .proj-img::after {
+      left: 32px;
     }
 
     /*
@@ -520,9 +578,9 @@
 
     .proj-list li {
       font-family: 'Inter', sans-serif;
-      font-size: 17px;
+      font-size: 24px;
       font-weight: 500;
-      line-height: 1.65;
+      line-height: 1.55;
       color: #333;
       padding-left: 14px;
       position: relative;
@@ -881,7 +939,14 @@
   </style>
 </head>
 
-<body>
+<body class="intro-active">
+
+  <!-- ═══════════════════════════════════════════
+       INTRO ANIMATION — shows once on page load
+  ═══════════════════════════════════════════ -->
+  <div class="intro" id="intro">
+    <span class="intro-text">WELCOME.</span>
+  </div>
 
   <!-- ═══════════════════════════════════════════
      HERO / LANDING PAGE
@@ -1013,7 +1078,7 @@
     <div class="projects-title">Core Projects &amp; Entrepreneurship</div>
 
     <!-- AIRA -->
-    <div class="proj-row">
+    <div class="proj-row aira">
       <div class="proj-img">
         <!--  portfolio/aira-mockup.png  -->
         <img src="aira-mockup.png" alt="AIRA Project" />
@@ -1057,7 +1122,7 @@
     </div>
 
     <!-- HIREVO -->
-    <div class="proj-row">
+    <div class="proj-row hirevo">
       <div class="proj-img">
         <!--  portfolio/hirevo-mockup.png  -->
         <img src="hirevo-mockup.png" alt="HIREVO Project" />
@@ -1224,6 +1289,17 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* Intro screen — remove from DOM after exit animation finishes */
+    const intro = document.getElementById('intro');
+    if (intro) {
+      intro.addEventListener('animationend', (e) => {
+        if (e.animationName === 'introExit') {
+          intro.remove();
+          document.body.classList.remove('intro-active');
+        }
+      });
+    }
   </script>
 
 </body>
